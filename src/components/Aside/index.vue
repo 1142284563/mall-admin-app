@@ -1,5 +1,5 @@
 <template>
-  <div :style="{width:asideWidth+'px'}" class="aside-container">
+  <div :style="{width:(collapsed?80:width)+'px'}" class="aside-container">
     <a-menu
       :default-selected-keys="['1']"
       :default-open-keys="['sub1']"
@@ -46,20 +46,11 @@
 
 <script>
 export default {
-  data(){
-    return {
-      collapsed:false,
-      asideWidth:250
+  props:["width"],
+  computed:{
+    collapsed(){
+      return this.$store.state.collapsed
     }
-  },
-  methods: {
-   
-  },
-  created(){
-    this.$events.$on("toggleCollapsed",()=>{
-        this.collapsed = !this.collapsed;
-        this.asideWidth=this.collapsed?80:250
-    })
   }
 };
 </script>

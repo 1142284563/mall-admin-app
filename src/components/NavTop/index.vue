@@ -2,10 +2,10 @@
   <div class="nav-top-container" :style="{height:height+'px'}">
       <a-button
       type="primary"
-      @click="toggleCollapsed"
+      @click="$store.commit('toggleCollapsed')"
       class="button"
     >
-      <a-icon :type="collapsed ? 'menu-unfold' : 'menu-fold'" />
+      <a-icon :type="$store.state.collapsed ? 'menu-unfold' : 'menu-fold'" />
      </a-button>
      
     <div class="breadcrumb">
@@ -31,14 +31,10 @@ export default {
     },
     data(){
         return {
-            collapsed:false
         }
     },
     methods:{
-        toggleCollapsed() {
-            this.collapsed = !this.collapsed;
-            this.$events.$emit("toggleCollapsed")
-        }
+        
     }
 }
 </script>
